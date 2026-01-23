@@ -1,0 +1,232 @@
+/*PORTÁL PRO MOTORISTY – STYLE.CSS*/
+
+:root {
+  --bg: #0f172a;
+  --panel: #111827;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --error: #f87171;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0,0,0,.4);
+  --input-bg: #0b1220;
+  --border: #374151;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/*Layout*/
+.bg-dark {
+  background: var(--bg);
+}
+
+/* HOME/OBSAHOVÉ STRÁNKY:
+   - začne odshora
+   - jde scrollovat
+   - karta je vodorovně na středu */
+.center-screen{
+  display: flex;
+  justify-content: center;     /* na střed vodorovně */
+  align-items: flex-start;     /* začít odshora */
+  min-height: 100vh;
+  overflow-y: auto;            /* povolí scroll */
+  padding: 32px 0;             /* prostor nahoře/dole */
+}
+
+/* LOGIN:
+   - necháme vycentrované na střed */
+.login-wrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px 0;
+}
+
+/*Karta*/
+.card {
+  background: var(--panel);
+  padding: 28px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 360px; /* na home.php je šířka přepsaná inline stylem */
+}
+
+/*Text*/
+h1 {
+  margin: 0 0 16px;
+  font-size: 22px;
+}
+
+p { margin: 8px 0; }
+
+.muted {
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.error {
+  color: var(--error);
+  margin: 6px 0 12px;
+}
+
+/*Formuláře – vstupy*/
+.row { margin-bottom: 12px; }
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--input-bg);
+  color: var(--text);
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 11px 14px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover { background: var(--accent-hover); }
+
+/* menší tlačítka (např. Přidat/Odebrat) */
+button.small {
+  width: auto;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+/*Odkazy*/
+a {
+  color: #93c5fd;
+  text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
+
+/* text v profilu zarovnaný doprava (e-mail, účet od) */
+.profile-meta {
+  margin-top: 8px;
+  text-align: right;
+  font-size: 13px;
+}
+
+/* fixní odhlášení vpravo nahoře */
+.logout-fixed {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  padding: 8px 16px;
+  background: #dc2626;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  z-index: 9999;
+  font-size: 14px;
+}
+
+.logout-fixed:hover { background: #b91c1c; }
+
+/*Hezčí FILTR na home.php*/
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.filters-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.filters-row--full { grid-template-columns: 1fr; }
+
+.filters-row--bottom { align-items: flex-end; }
+
+.filter-item label {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.filter-item--full input { width: 100%; }
+
+.filter-item--checkbox {
+  display: flex;
+  align-items: flex-end;
+}
+
+.filter-item--checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.filter-item--actions {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #0b1220;
+  font-size: 13px;
+}
+
+.pill-outline { background: transparent; }
+
+/* aby inputy/selecty ve filtru měly stejnou výšku */
+.filters input[type="text"],
+.filters input[type="number"],
+.filters select {
+  height: 38px;
+}
+
+/*Mobilní úpravy*/
+@media (max-width: 400px) {
+  .card {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
+/* filtr na menších displejích – vše pod sebou */
+@media (max-width: 800px) {
+  .filters-row { grid-template-columns: 1fr; }
+}
